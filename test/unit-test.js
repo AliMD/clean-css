@@ -709,5 +709,35 @@ title']",
     'empty #2': 'div>a{}',
     'empty #3': 'div:nth-child(2n){}',
     'empty #4': 'a{color:#fff}div{}p{line-height:2em}'
+  }),
+  '@import': cssContext({
+    'empty': [
+      "@import url();",
+      ""
+    ],
+    'pointing to unknown file': [
+      "@import url('fake.css');",
+      ""
+    ],
+    'to a directory': [
+      "@import url(test/data/partials);",
+      ""
+    ],
+    'to a real file': [
+      "@import url(test/data/partials/one.css);",
+      ".one{color:red}"
+    ],
+    'to a real file with quoted path': [
+      "@import url('test/data/partials/one.css');",
+      ".one{color:red}"
+    ],
+    'to more files': [
+      "@import url(test/data/partials/one.css);\n\na{}\n\n@import url(test/data/partials/extra/three.css);",
+      ".one{color:red}a{}.three{color:#0f0}"
+    ],
+    'to multi-level, circular dependency file': [
+      "@import url(test/data/partials/two.css);",
+      ".one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}"
+    ]
   })
 }).export(module);

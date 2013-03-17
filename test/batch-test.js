@@ -20,14 +20,16 @@ var batchContexts = function() {
 
         return {
           plain: fs.readFileSync(plainPath, 'utf-8'),
-          minimized: fs.readFileSync(minPath, 'utf-8')
+          minimized: fs.readFileSync(minPath, 'utf-8'),
+          relativeTo: path.dirname(plainPath)
         };
       }
     };
     context[testName]['minimizing ' + testName + '.css'] = function(data) {
       var processed = cleanCSS.process(data.plain, {
         removeEmpty: true,
-        keepBreaks: true
+        keepBreaks: true,
+        relativeTo: data.relativeTo
       });
 
       var processedTokens = processed.split(lineBreak);
