@@ -8,8 +8,9 @@ var lineBreak = process.platform == 'win32' ? /\r\n/g : /\n/g;
 
 var batchContexts = function() {
   var context = {};
-  fs.readdirSync(path.join(__dirname, 'data')).forEach(function(filename) {
-    if (/min.css$/.exec(filename)) return;
+  var dir = path.join(__dirname, 'data');
+  fs.readdirSync(dir).forEach(function(filename) {
+    if (/min.css$/.exec(filename) || !fs.statSync(path.join(dir, filename)).isFile()) return;
     var testName = filename.split('.')[0];
 
     context[testName] = {
