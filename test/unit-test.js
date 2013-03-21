@@ -772,7 +772,7 @@ title']",
     ],
     'of a multi-level, circular dependency file with mixed paths': [
       "@import url(/partials-absolute/base.css);",
-      ".sub{padding:0}.base2{border-width:0}.base{margin:0}"
+      ".base2{border-width:0}.sub{padding:0}.base{margin:0}"
     ]
-  }, { relativeTo: path.join(process.cwd(), 'test', 'data') })
+  }, { root: path.join(process.cwd(), 'test', 'data') })
 }).export(module);

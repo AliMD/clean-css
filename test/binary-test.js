@@ -85,7 +85,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
   }),
   'relative to path': binaryContext('-r ./test/data ./test/data/partials-absolute/base.css', {
     'should be able to resolve it': function(error, stdout) {
-      assert.equal(stdout, ".sub{padding:0}.base2{border-width:0}.base{margin:0}");
+      assert.equal(stdout, ".base2{border-width:0}.sub{padding:0}.base{margin:0}");
     }
   }),
   'from source': binaryContext('./test/data/reset.css', {

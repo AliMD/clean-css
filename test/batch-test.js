@@ -21,7 +21,7 @@ var batchContexts = function() {
         return {
           plain: fs.readFileSync(plainPath, 'utf-8'),
           minimized: fs.readFileSync(minPath, 'utf-8'),
-          relativeTo: path.dirname(plainPath)
+          root: path.dirname(plainPath)
         };
       }
     };
@@ -29,7 +29,7 @@ var batchContexts = function() {
       var processed = cleanCSS.process(data.plain, {
         removeEmpty: true,
         keepBreaks: true,
-        relativeTo: data.relativeTo
+        root: data.root
       });
 
       var processedTokens = processed.split(lineBreak);
